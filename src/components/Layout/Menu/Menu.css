@@ -1,0 +1,22 @@
+.navbar {
+	border-bottom: 1px solid #eee;
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	background-color: #000000;
+}
+
+a.navbar-item,
+.navbar-link {
+	border-bottom: 3px solid transparent;
+	margin-left: 0rem;
+	transition: all 250ms ease-in-out;
+	color: #ffffff;
+}
+
+a.navbar-item:hover {
+	color: #222222;
+	background-color: #fefefe;
+}
+
+a.navbar-item img {
+	max-height: 3rem;
+}
