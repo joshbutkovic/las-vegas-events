@@ -1,29 +1,25 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
-export const useHttp = (url, dependencies) => {
-	const [isLoading, setIsLoading] = useState(false);
-	const [fetchedData, setFetchedData] = useState(null);
+export const useHttpGet = (url, dependencies) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [returnedData, setReturnedData] = useState(null);
 
-	useEffect(() => {
-		setIsLoading(true);
-		console.log("Sending Http request to URL: " + url);
-		fetch(url)
-			.then(response => {
-				if (!response.ok) {
-					throw new Error("Failed to fetch.");
-				}
-				return response.json();
-			})
-			.then(data => {
-				setIsLoading(false);
-				setFetchedData(data);
-			})
-			.catch(err => {
-				console.log("inside error block");
-				console.log(err);
-				setIsLoading(false);
-			});
-	}, dependencies);
+  useEffect(() => {
+    setIsLoading(true);
+    console.log("Sending Http request to URL: " + url);
+    axios
+      .get(url)
+      .then(function(response) {
+        setIsLoading(false);
+        setReturnedData(response.data);
+      })
+      .catch(function(error) {
+        setIsLoading(false);
+        console.log(error);
+      })
+      .finally(function() {});
+  }, dependencies);
 
-	return [isLoading, fetchedData];
+  return [isLoading, returnedData];
 };

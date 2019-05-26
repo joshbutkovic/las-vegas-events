@@ -1,52 +1,44 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container } from "../../utils/animations";
-import { useHttp } from "../../hooks/http";
-// import axios from "axios";
+import { useHttpGet } from "../../hooks/http";
+import { GET_EVENTS_URL } from "../../config/http-config";
+import { Event } from "../Events/Event/Event";
 
 const Events = props => {
-	const [isLoading, fetchedData] = useHttp("https://www.caesars.com/api/v1/markets/lvm/events", [
-		props.loadedEvents,
-	]);
+  const [isLoading, returnedEvents] = useHttpGet(GET_EVENTS_URL, [
+    props.loadedEvents
+  ]);
 
-	let loadedEvents = null;
+  const selectedEvents = returnedEvents;
 
-	if (loadedEvents) {
-		console.log(loadedEvents);
-		// loadedEvents = {};
-	}
-	// const test = () => {
-	// 	axios
-	// 		.get("https://www.caesars.com/api/v1/markets/lvm/events")
-	// 		.then(function(response) {
-	// 			// handle success
-	// 			console.log(response);
-	// 		})
-	// 		.catch(function(error) {
-	// 			console.log("in error block");
-	// 			// handle error
-	// 			console.log(error);
-	// 		})
-	// 		.finally(function() {
-	// 			// always executed
-	// 		});
-	// };
+  let content = <p>Loading events...</p>;
 
-	// test();
+  if (!isLoading && selectedEvents && selectedEvents.length > 0) {
+    content = "HI";
+  }
 
-	let content = (
-		<Container>
-			<div className="container">
-				<section className="section">
-					<div className="columns">
-						<div className="column">
-							<h1 className="is-size-2 has-text-centered">LAS VEGAS EVENTS</h1>
-						</div>
-					</div>
-				</section>
-			</div>
-		</Container>
-	);
-	return content;
+  // } else if (!isLoading && (!selectedEvents || selectedEvents.length === 0)) {
+  //   content = <p>Could not fetch any data.</p>;
+  // }
+
+  return content;
+
+  // let eventsPageContent = (
+  //   <Container>
+  //     <div className="container">
+  //       <section className="section">
+  //         <div className="columns">
+  //           <div className="column">
+  //             <h1 className="is-size-2 has-text-centered">LAS VEGAS EVENTS</h1>
+  //             {eventContent}
+  //           </div>
+  //         </div>
+  //       </section>
+  //     </div>
+  //   </Container>
+  // );
+
+  // return eventsPageContent;
 };
 
 export default Events;
