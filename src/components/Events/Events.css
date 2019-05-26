@@ -1,3 +1,7 @@
 .event-container {
-  margin-bottom: 2rem;
+	margin-bottom: 2rem;
+}
+
+h1.is-size-2 {
+	margin-bottom: 1.75rem;
 }
