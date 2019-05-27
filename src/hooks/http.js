@@ -12,7 +12,7 @@ export const useHttpGet = (url, dependencies) => {
 			.get(url)
 			.then(function(response) {
 				setIsLoading(false);
-				setReturnedData(filterEvents(response.data));
+				setReturnedData(response.data);
 			})
 			.catch(function(error) {
 				setIsLoading(false);
