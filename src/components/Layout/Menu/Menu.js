@@ -1,6 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Menu.css";
+import React from 'react';
+import './Menu.css';
 
 const Menu = () => {
 	return (
@@ -12,28 +11,6 @@ const Menu = () => {
 						alt="Caesars Entertainment"
 					/>
 				</a>
-				<a
-					role="button"
-					className="navbar-burger burger"
-					aria-label="menu"
-					aria-expanded="false"
-					data-target="menu"
-				>
-					<span aria-hidden="true" />
-					<span aria-hidden="true" />
-					<span aria-hidden="true" />
-				</a>
-			</div>
-
-			<div id="menu" className="navbar-menu">
-				<div className="navbar-start">
-					<Link className="navbar-item" to="/">
-						Events
-					</Link>
-					<Link className="navbar-item" to="/about">
-						About
-					</Link>
-				</div>
 			</div>
 		</div>
 	);

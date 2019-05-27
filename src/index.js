@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import RouterContainer from './components/Layout/RouterContainer/RouterContainer';
+import Events from './components/Events/Events';
 import Menu from './components/Layout/Menu/Menu';
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -12,7 +12,7 @@ function App() {
 		<Router>
 			<div className="App">
 				<Menu />
-				<RouterContainer />
+				<Events />
 			</div>
 		</Router>
 	);

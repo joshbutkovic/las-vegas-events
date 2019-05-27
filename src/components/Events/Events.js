@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-// import _ from 'lodash';
+import _ from 'lodash';
+import PropTypes from 'prop-types';
 import { Container } from '../../utils/animations';
 import { useHttpGet } from '../../hooks/http';
 import { filterEvents } from '../../utils/eventsFilter';
@@ -27,8 +28,7 @@ const Events = props => {
 	};
 
 	if (!isLoading && initialEvents && initialEvents.length > 0 && filteredEvents.length === 0) {
-		// _.orderBy(response.data, ['name'], ['asc'])
-		eventComponents = filterEvents(initialEvents).map((event, id) => (
+		eventComponents = _.orderBy(filterEvents(initialEvents), ['name'], ['asc']).map((event, id) => (
 			<div key={id} className="container is-widescreen event-container">
 				<div className="notification">
 					<Event event={event} />
@@ -36,7 +36,7 @@ const Events = props => {
 			</div>
 		));
 	} else if (filteredEvents.length > 0) {
-		eventComponents = filteredEvents.map((event, id) => (
+		eventComponents = _.orderBy(filteredEvents, ['name'], ['asc']).map((event, id) => (
 			<div key={id} className="container is-widescreen event-container">
 				<div className="notification">
 					<Event event={event} />
@@ -51,9 +51,12 @@ const Events = props => {
 				<section className="section">
 					<div className="columns">
 						<div className="column">
-							<h1 className="is-size-2 has-text-centered">{mainHeading}</h1>
+							<h1 className="is-size-2 is-size-4-mobile has-text-centered">{mainHeading}</h1>
 							<div className="columns">
 								<div className="column">
+									<p class="has-text-grey">
+										<small>Select Date</small>
+									</p>
 									<DatePicker
 										selected={startDate}
 										onChange={handleDateChange}
@@ -72,6 +75,13 @@ const Events = props => {
 	);
 
 	return content;
+};
+
+Events.propTypes = {
+	startDate: PropTypes.number.isRequired,
+	isLoading: PropTypes.bool.isRequired,
+	returnedEvents: PropTypes.object.isRequired,
+	filteredEvents: PropTypes.object.isRequired,
 };
 
 export default Events;

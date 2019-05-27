@@ -1,9 +1,44 @@
 .event-container {
 	margin-bottom: 2rem;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.notification {
+	background-color: #f9f1ea;
+	padding: 0.75rem 1.25rem;
 }
 
 h1.is-size-2 {
-	margin-bottom: 1.75rem;
+	margin-bottom: 1rem;
+}
+
+h3.event-name {
+	color: #847463;
+	text-transform: uppercase;
+	font-size: 22px;
+	font-weight: 400;
+}
+
+p.event-summary {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
+	color: #3f3d3b;
+	margin-bottom: 1rem;
+	margin-top: 0.5rem;
+}
+
+p.event-date {
+	text-transform: uppercase;
+}
+
+a.event-name {
+	text-decoration: none !important;
+	margin-bottom: 2rem;
+	text-transform: uppercase;
+}
+
+p.event-prices {
+	margin-top: 1rem;
 }
 
 input[type='date']::-webkit-inner-spin-button {
@@ -11,6 +46,55 @@ input[type='date']::-webkit-inner-spin-button {
 	display: none;
 }
 
-.button-tickets {
+input,
+.react-datepicker__month-container {
+	border: 1px solid #bfbbb6 !important;
+}
+
+.button-tickets,
+.button-website {
 	margin-left: 1rem;
+	padding: 1.125rem;
+	font-size: 14px;
+	min-width: 75px;
+	transition: all 0.3s ease-in-out;
+}
+
+.button-tickets {
+	font-weight: 600;
+	background: #847363;
+	color: #ffffff;
+}
+
+.button-tickets:hover {
+	background: #000000;
+	color: #ffffff;
+}
+
+.button-website {
+	color: #847363;
+	border-color: #847363;
+}
+
+.button-website:hover {
+	color: #ffffff;
+	background: #847363;
+	border-color: #847363;
+	font-weight: 600;
+}
+
+@media screen and (max-width: 438px) {
+	.button-tickets,
+	.button-website {
+		margin-left: 0.25rem;
+	}
+	.event-summary {
+		font-size: 0.875rem;
+	}
+}
+
+@media screen and (max-width: 413px) {
+	.button-website {
+		margin-bottom: 0.5rem;
+	}
 }

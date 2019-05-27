@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { filterEvents } from '../utils/eventsFilter';
 
 export const useHttpGet = (url, dependencies) => {
 	const [isLoading, setIsLoading] = useState(false);

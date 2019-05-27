@@ -1,4 +1,4 @@
-import posed from "react-pose";
+import posed from 'react-pose';
 
 export const Container = posed.div({
 	enter: { staggerChildren: 50 },
@@ -12,59 +12,4 @@ export const RouteTransitionWrapper = posed.div({
 export const Paragraph = posed.p({
 	enter: { x: 20, opacity: 1 },
 	exit: { x: 0, opacity: 0 },
-});
-
-export const Input = posed.input({
-	focusable: true,
-	init: {
-		scale: 1,
-	},
-	focus: {
-		scale: 1.0125,
-	},
-});
-
-export const Button = posed.div({
-	hoverable: true,
-	pressable: true,
-	init: {
-		scale: 1,
-		boxShadow: "0px 0px 0px rgba(0,0,0,0)",
-	},
-	hover: {
-		scale: 1.0125,
-		boxShadow: "0px 2px 4px rgba(0,0,0,0.2)",
-	},
-	press: {
-		scale: 1.06125,
-		boxShadow: "0px 1px 2px rgba(0,0,0,0.1)",
-	},
-});
-
-export const NavLink = posed.div({
-	hoverable: true,
-	pressable: true,
-	init: {
-		color: "#4a4a4a",
-	},
-	hover: {
-		color: "#3273dc",
-	},
-	press: {
-		color: "#3273dc",
-	},
-});
-
-export const AnchorLink = posed.a({
-	hoverable: true,
-	pressable: true,
-	init: {
-		color: "#3273dc",
-	},
-	hover: {
-		color: "#023ea0",
-	},
-	press: {
-		color: "#023ea0",
-	},
 });

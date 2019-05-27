@@ -5,7 +5,7 @@ export const filterEvents = (events, dateToFilterFor) => {
 	let filteredEventsArr = [];
 	let dateToCheck = dateToFilterFor || moment().format('YYYY-MM-DD');
 	events.forEach(e => {
-		if (checkDates(e.dates, dateToCheck)) {
+		if (checkDates(e.dates, dateToCheck) && !checkForMissingImage(e)) {
 			filteredEventsArr.push(assembleMatchedFilteredEvent(e, dateToCheck));
 		}
 	});
@@ -35,13 +35,23 @@ const getEventTimeForDate = (event, date) => {
 	event.dates.forEach(e => {
 		let startDate = moment(e.start, 'YYYY-MM-dd');
 		let endDate = moment(e.end, 'YYYY-MM-dd');
-		if (typeof e.times !== 'undefined' && moment(date).isBetween(startDate, endDate, [])) {
+		if (
+			typeof e.times !== 'undefined' &&
+			moment(date).isBetween(startDate, endDate, []) &&
+			!times.includes(`${e.times} `)
+		) {
 			e.times.forEach(t => {
-				times.push(t);
+				times.push(`${t} `);
 			});
 		}
 	});
 	return times.reverse();
+};
+
+const checkForMissingImage = event => {
+	if (typeof event.featuredImage === 'undefined') {
+		return true;
+	}
 };
 
 const checkDates = (dates, dateToCheck) => {
