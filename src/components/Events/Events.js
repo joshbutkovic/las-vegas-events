@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import moment from 'moment';
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
+// import _ from 'lodash';
 import { Container } from '../../utils/animations';
 import { useHttpGet } from '../../hooks/http';
 import { filterEvents } from '../../utils/eventsFilter';
@@ -9,7 +10,7 @@ import Event from '../Events/Event/Event';
 import '../../components/Events/Events.css';
 
 const Events = props => {
-	const [startDate, setStartDate] = useState();
+	const [startDate, setStartDate] = useState(Date.parse(moment()));
 	const [isLoading, returnedEvents] = useHttpGet(GET_EVENTS_URL, [props.returnedEvents]);
 	const [filteredEvents, setFilteredEvents] = useState([]);
 
@@ -21,11 +22,13 @@ const Events = props => {
 
 	const handleDateChange = date => {
 		setStartDate(date);
+		console.log(filterEvents(initialEvents, date));
 		setFilteredEvents(filterEvents(initialEvents, date));
 	};
 
 	if (!isLoading && initialEvents && initialEvents.length > 0 && filteredEvents.length === 0) {
-		eventComponents = initialEvents.map((event, id) => (
+		// _.orderBy(response.data, ['name'], ['asc'])
+		eventComponents = filterEvents(initialEvents).map((event, id) => (
 			<div key={id} className="container is-widescreen event-container">
 				<div className="notification">
 					<Event event={event} />
@@ -51,16 +54,15 @@ const Events = props => {
 							<h1 className="is-size-2 has-text-centered">{mainHeading}</h1>
 							<div className="columns">
 								<div className="column">
-									<label>Select Date: </label>
 									<DatePicker
 										selected={startDate}
 										onChange={handleDateChange}
 										name="startDate"
 										dateFormat="YYYY-MM-dd"
+										placeholderText="Click to select a date"
 									/>
 								</div>
 							</div>
-							{/* {filteredEvents} */}
 							{eventComponents}
 						</div>
 					</div>

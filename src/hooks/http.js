@@ -4,7 +4,7 @@ import { filterEvents } from '../utils/eventsFilter';
 
 export const useHttpGet = (url, dependencies) => {
 	const [isLoading, setIsLoading] = useState(false);
-	const [returnedData, setReturnedData] = useState(null);
+	const [returnedEvents, setReturnedEvents] = useState(null);
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -12,7 +12,7 @@ export const useHttpGet = (url, dependencies) => {
 			.get(url)
 			.then(function(response) {
 				setIsLoading(false);
-				setReturnedData(response.data);
+				setReturnedEvents(response.data);
 			})
 			.catch(function(error) {
 				setIsLoading(false);
@@ -20,5 +20,5 @@ export const useHttpGet = (url, dependencies) => {
 			});
 	}, dependencies);
 
-	return [isLoading, returnedData];
+	return [isLoading, returnedEvents];
 };

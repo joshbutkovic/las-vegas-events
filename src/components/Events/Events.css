@@ -10,3 +10,7 @@ input[type='date']::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	display: none;
 }
+
+.button-tickets {
+	margin-left: 1rem;
+}

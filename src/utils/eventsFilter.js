@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { BASE_URL } from '../config/http-config';
 
 export const filterEvents = (events, dateToFilterFor) => {
 	let filteredEventsArr = [];
@@ -13,10 +14,14 @@ export const filterEvents = (events, dateToFilterFor) => {
 
 const assembleMatchedFilteredEvent = (event, date) => {
 	let assembledEvent = {};
+	let imageUrl = BASE_URL;
+	for (let i in event.featuredImage) {
+		imageUrl += event.featuredImage.url;
+	}
 	assembledEvent.date = date;
 	assembledEvent.times = getEventTimeForDate(event, date);
 	assembledEvent.name = event.name;
-	assembledEvent.featuredImage = event.featuredImage;
+	assembledEvent.featuredImage = imageUrl;
 	assembledEvent.propertyName = event.propertyName;
 	assembledEvent.summary = event.summary;
 	assembledEvent.prices = event.prices;
