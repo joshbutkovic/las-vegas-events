@@ -5,3 +5,8 @@
 h1.is-size-2 {
 	margin-bottom: 1.75rem;
 }
+
+input[type='date']::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	display: none;
+}
