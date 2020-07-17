@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "dependencies": {
     "axios": "0.18.0",
-    "lodash": "4.17.11",
+    "lodash": "4.17.19",
     "moment": "2.24.0",
     "react": "16.8.6",
     "react-datepicker": "2.5.0",
